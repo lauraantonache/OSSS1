@@ -11,8 +11,10 @@ with open('stats.csv', 'rb') as csvfile:
     for row in spamreader:
         item = ', '.join(row)
         tokens = item.strip().split(",")
+        #print "crt_test", crt_test
+        #print "token[0]:", tokens[0]
         if crt_test == tokens[0]:
-            print "debug"
+            #print "debug"
             entry = {
                 'test_name': tokens[0],
                 'school_name': tokens[2],
@@ -23,7 +25,7 @@ with open('stats.csv', 'rb') as csvfile:
         else:
             #print test
             database.append(test)
-            crt_test = tokens[1]
+            crt_test = tokens[0]
             entry = {
                 'test_name': tokens[0],
                 'school_name': tokens[2],
@@ -49,4 +51,5 @@ for i in range (len(database)):
             if crt_grade > max:
                 max = crt_grade
                 max_item = item
-    #print "Maximul obtinut la testul %s este %d " % (max_item['test_name'], max)
+    test_name_aux = max_item['test_name'].split('(')     
+    print "Maximul obtinut la testul %s este %d " % (test_name_aux[0], max)
