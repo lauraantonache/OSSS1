@@ -53,3 +53,24 @@ for i in range (len(database)):
                 max_item = item
     test_name_aux = max_item['test_name'].split('(')     
     print "Maximul obtinut la testul %s este %d " % (test_name_aux[0], max)
+
+
+
+for i in range (len(database)):
+    schools = []
+    for item in database[i]:
+        crt_test = item['test_name']
+        crt_school = item['school_name']
+        crt_grade = int(item['grade'])
+        flag = 0
+        for iterator in schools:
+            if crt_school == iterator[0]:
+                if iterator[1] < crt_grade:
+                    iterator[1] = crt_grade
+                flag = 1
+        if flag == 0:
+            schools.append([crt_school, crt_grade])
+    test_name_aux = crt_test.split('(')     
+    print "Maximul obtinut la testul %s" % crt_test.split('(')[0]
+    for school in schools:
+        print "Scoala %s, Maximul %d" % (school[0], school[1])
